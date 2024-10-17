@@ -1,0 +1,11 @@
+services:
+  arm64-on-amd64:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    platform: linux/arm64
+    volumes:
+      # Mounts the project folder to '/workspaces/arm64-on-amd64
+      - type: bind
+        source: ../
+        target: /workspaces/arm64-on-amd64

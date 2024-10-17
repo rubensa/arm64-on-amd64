@@ -1,0 +1,64 @@
+{
+  // see: https://github.com/devcontainers/spec/blob/main/docs/specs/devcontainerjson-reference.md
+  // see: https://containers.dev/implementors/json_reference/
+  // see: https://code.visualstudio.com/docs/getstarted/settings#_default-settings
+  // see: https://code.visualstudio.com/docs/editor/variables-reference
+  ////////////////////////
+  // General properties //
+  ////////////////////////
+  // On Linux, the container user's UID/GID will be updated to match your local user.
+  "updateRemoteUserUID": true,
+  // Indicates the type of shell VS Code should use to "probe" for user environment variables to use by default
+  // while debugging or running a task: none, interactiveShell, loginShell, or loginInteractiveShell (default).
+  // Fire ~/.bashrc, ~/.zshrc before starting VS Code processes
+  "userEnvProbe": "none",
+  // Tells VS Code and other devcontainer.json supporting services / tools 
+  // whether they should run /bin/sh -c "while sleep 1000; do :; done" 
+  // when starting the container instead of the container's default command 
+  // (since the container can shut down if the default command fails).
+  "overrideCommand": true,
+  // Indicates whether VS Code and other devcontainer.json supporting tools should stop 
+  // the containers when the related tool window is closed / shut down.
+  "shutdownAction": "stopCompose",
+  ////////////////////////////////////////
+  // Docker Compose specific properties //
+  ////////////////////////////////////////
+  // Path or an ordered list of paths to Docker Compose files.
+  // The path is relative to the devcontainer.json file.
+  "dockerComposeFile": "docker-compose.yml",
+  // The name of the service VS Code and other devcontainer.json 
+  // supporting services / tools should connect to once running.
+  "service": "arm64-on-amd64",
+  // Sets the default path that VS Code and other devcontainer.json supporting services / tools 
+  // should open when connecting to the container 
+  // (which is often the path to a volume mount where the source code can be found in the container).
+  "workspaceFolder": "/workspaces/arm64-on-amd64",
+  /////////////////////////////////
+  // VS Code specific properties //
+  /////////////////////////////////
+  // Configure tool-specific properties.
+  "customizations": {
+    // Configure properties specific to VS Code.
+    "vscode": {
+      // Adds default settings.json values into a container/machine specific settings file.
+      "settings": {
+        //////////////
+        // Terminal //
+        //////////////
+        // The default profile used on Linux. This setting will currently be ignored if either `terminal.integrated.shell.linux` or `terminal.integrated.shellArgs.linux` are set.
+        "terminal.integrated.defaultProfile.linux": "bash",
+        // The Linux profiles to present when creating a new terminal via the terminal dropdown. Set the `path` property manually with an optional `args`.
+        // Set an existing profile to `null` to hide the profile from the list, for example: `"bash": null`.
+        "terminal.integrated.profiles.linux": {
+          "bash": {
+            "path": "/bin/bash",
+            "args": [
+              // Run interactive bash shell in VSCode integrated terminal
+              "-i"
+            ]
+          }
+        }
+      }
+    }
+  }
+}
