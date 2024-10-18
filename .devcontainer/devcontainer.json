@@ -42,6 +42,8 @@
     "vscode": {
       // Adds default settings.json values into a container/machine specific settings file.
       "settings": {
+        // Configurable timeout VS Code will wait to "resolve" the shell environment defined in your .bashrc or .zshrc files
+        "application.shellEnvironmentResolutionTimeout": 60,
         //////////////
         // Terminal //
         //////////////
